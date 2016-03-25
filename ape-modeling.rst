@@ -56,6 +56,9 @@ and also comments briefly on other projects.
 astropy.modeling
 ++++++++++++++++
 
+The `astropy.modeling <http://astropy.readthedocs.org/en/latest/modeling/index.html>`__
+package 
+
 Sherpa
 ++++++
 
@@ -65,9 +68,20 @@ Other packages
 Use cases
 ---------
 
-TODO: describe use cases / examples in https://github.com/astropy/astropy-model-ideas
+The https://github.com/astropy/astropy-model-ideas repo contains example
+Python scripts and IPYthon notebooks that illustrate modeling and fitting
+use cases.
+
+* `sherpa_astropy_iminuit.ipynb <https://github.com/astropy/astropy-model-ideas/blob/master/notebooks/sherpa_astropy_iminuit/sherpa_astropy_iminuit.ipynb>`__ - Comparing model fitting with Sherpa, iminuit and Astropy
+* `MCMCWithAstropyModels.ipynb <https://github.com/astropy/astropy-model-ideas/blob/master/MCMCWithAstropyModels.ipynb>`__ - MCMC with Astropy models and emcee
+* `sherpa_usermodel_wrap_astropy_model.py <https://github.com/astropy/astropy-model-ideas/blob/master/sherpa_usermodel_wrap_astropy_model.py>`__ -- Example how to wrap Astropy model and fit it with Sherpa 
 
 Plan
 ----
 
-TODO
+* Link to Sherpa from the astropy.modeling docs front page,
+  pointing it out as an alternative.
+* Gather more use cases in the ``astropy-model-ideas`` repo.
+* More experiments how to interface Astropy and Sherpa (and scipy.optimise, iminuit, emcee)
+* What needs to be added to Sherpa to allow all major use cases (e.g. joint likelihood fitting)
+* `GSoC application <https://github.com/astropy/astropy/wiki/GSoC-2016-Application-Michele-Costa:-Bridge-sherpa-and-astropy-fitting>`__
