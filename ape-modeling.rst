@@ -26,6 +26,10 @@ This document contains:
 Given that both ``astropy.modeling`` and ``Sherpa`` exist and won't go away,
 the goal is to avoid duplication of effort and improve interoperability.
 
+TODO: add statement on scope of modeling packages? I.e. the goal is not
+to create a modeling / fitting package that will be super-general and
+allow very complex applications (like TODO).
+
 Why this document?
 ------------------
 
@@ -47,6 +51,24 @@ approval. It's not clear if we should submit this as an `Astropy APE
 For now, please contribute to this document and code examples to
 https://github.com/astropy/astropy-model-ideas.
 
+Glossary
+--------
+
+The terms "model" and "fitting" mean very different things to different people,
+making it hard to 
+
+This glossary establishes the meaning of the terms used in this document
+and the Astropy and Sherpa docs.
+
+* "Model" --- tbd
+* "Fitting" -- tbd
+* "Optimisation" -- tbd
+* "Error estimation" -- tbd
+* "Fit statistic" -- tbd
+
+TODO: do we need different terminoloty for Bayesian analysis or can we largely
+have the same as for likelihood fitting?
+
 Status
 ------
 
@@ -57,13 +79,43 @@ astropy.modeling
 ++++++++++++++++
 
 The `astropy.modeling <http://astropy.readthedocs.org/en/latest/modeling/index.html>`__
-package 
+package has an advanced framework to create models.
+I.e. a parameter class, a model class, a way to create composite models.
+
+The framework to implement fit statistic functions or to fit them is primitive
+and has received little attention so far.
+
+The concept of fit statistic, optimizer and error estimator has been combined
+in a "Fitter" class (although there is a proposal to separate them
+in https://github.com/astropy/astropy/pull/3786).
+
+The main use case for ``astropy.modeling`` so far was the development of
+chains of wo
+https://github.com/spacetelescope/gwcs
+http://photutils.readthedocs.org/en/latest/photutils/psf.html
+
 
 Sherpa
 ++++++
 
 Other packages
 ++++++++++++++
+
+Other Python modeling / fitting packages exist:
+
+* See `iminuit <https://github.com/iminuit/iminuit>`__ and 
+`probfit <https://github.com/iminuit/probfit>`__.
+* See `astromodels <https://github.com/giacomov/astromodels>`__
+and `3ML <https://github.com/giacomov/3ML>`__.
+
+In Python efforts are very scattered. It seems that in Julia
+the modeling / fitting community and development efforts are much better structured, see
+http://www.juliaopt.org/.
+
+TODO: make comments on how those are relevant here.
+Is our only goal to figure out where to put priorities and developer time in
+``astropy.modeling`` and ``Sherpa``, or do we have the energy and time to try to
+improve the situation in Python as a whole?
 
 Use cases
 ---------
@@ -76,11 +128,36 @@ use cases.
 * `MCMCWithAstropyModels.ipynb <https://github.com/astropy/astropy-model-ideas/blob/master/MCMCWithAstropyModels.ipynb>`__ - MCMC with Astropy models and emcee
 * `sherpa_usermodel_wrap_astropy_model.py <https://github.com/astropy/astropy-model-ideas/blob/master/sherpa_usermodel_wrap_astropy_model.py>`__ -- Example how to wrap Astropy model and fit it with Sherpa 
 
+Whishlist
+---------
+
+astropy.modeling
+++++++++++++++++
+
+* Improve docs to explain scope and alternatives (such as Sherpa or emcee)?
+* Explain how to fit Astropy models and implement likelihoods with other packages (e.g. Sherpa, emcee, iminuit)?
+
+Sherpa
+++++++
+
+* Resolve some issues with the Sherpa API:
+  * Allow creation of a user likelihood and fitting it without the
+    need to create a data shim class. TODO: link to example.
+  * MWL fitting, per-dataset stat. TODO: link to example.
+* Sphinx docs
+* Better framework for Bayesian analysis (e.g. via emcee)?
+* Python 3
+* Easier to install (make Fortran and conda extensions optional)
+* BSD license
+* Faster release cycle?
+
 Plan
 ----
 
 * Link to Sherpa from the astropy.modeling docs front page,
   pointing it out as an alternative.
+* Adopt Sherpa as astropy-affiliated package to further promote it?
+  (what things should happen before?)
 * Gather more use cases in the ``astropy-model-ideas`` repo.
 * More experiments how to interface Astropy and Sherpa (and scipy.optimise, iminuit, emcee)
 * What needs to be added to Sherpa to allow all major use cases (e.g. joint likelihood fitting)
