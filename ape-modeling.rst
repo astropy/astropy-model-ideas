@@ -90,10 +90,22 @@ in a "Fitter" class (although there is a proposal to separate them
 in https://github.com/astropy/astropy/pull/3786).
 
 The main use case for ``astropy.modeling`` so far was the development of
-chains of wo
+chains of world coordinate transformations.
+This is reflected in the fact that WCS models are wrapped or re-implemented
+as Astropy models (TODO: link to docs), and that the GWCS models are
+implemented as Astropy models:
 https://github.com/spacetelescope/gwcs
-http://photutils.readthedocs.org/en/latest/photutils/psf.html
 
+There are some applications where Astropy models are fitted.
+
+* The ``astropy.modeling`` docs show some examples how to do least-square fits to 1-dim and 2-dim data.
+* PSF fitting photometry is implemented in
+  `photometry.psf <http://photutils.readthedocs.org/en/latest/photutils/psf.html>`__.
+* TODO: link to WCS fitting example that Nadia showed.
+
+TODO: what to say here or later what this implies?
+If we still propose to deprecate `astropy.modeling.fitting`,
+what is the exact proposed replacement for these applications?
 
 Sherpa
 ++++++
